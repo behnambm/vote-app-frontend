@@ -15,6 +15,20 @@ export default function Home() {
   const [isActive, setIsActive] = useState(false)
   const [showEmailModal, setShowEmailModal] = useState(false)
 
+  const registerVote = async (voteId, userChoice) => {
+    const resp = await fetch('http://localhost:8000/api/vote/', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'email': email,
+        'user_choice': userChoice,
+        'vote_id': voteId,
+      })
+    })
+  }
+
   useEffect(async () => {
     setEmail(localStorage.getItem('email') || '')
     setIsActive(prevState => {
@@ -34,7 +48,7 @@ export default function Home() {
   return (
     <div className="container mx-auto mt-6">
       {data?.map(item => {
-        return <Vote {...item} key={item.id}/>
+        return <Vote {...item} key={item.id} registerVote={registerVote} />
       })}
 
       {showEmailModal && <EmailModal email={email} setEmail={setEmail} setShowEmailModal={setShowEmailModal} setIsActive={setIsActive} />}
