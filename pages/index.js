@@ -3,7 +3,7 @@ import EmailModal from '../components/EmailModal.js'
 import Vote from '../components/Vote.js'
 
 const getVotesData = async () => {
-  const resp = await fetch('http://localhost:8000/api/vote/')
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_VOTE_API_BASE}/api/vote/`)
   const data = await resp.json()
   return data
 }
@@ -16,7 +16,7 @@ export default function Home() {
   const [showEmailModal, setShowEmailModal] = useState(false)
 
   const registerVote = async (voteId, userChoice) => {
-    const resp = await fetch('http://localhost:8000/api/vote/', {
+    const resp = await fetch(`${process.env.NEXT_PUBLIC_VOTE_API_BASE}/api/vote/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

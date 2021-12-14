@@ -9,7 +9,7 @@ function EmailModal({email, setEmail, setShowEmailModal, setIsActive}) {
     const [emailError, setEmailError] = useState({show: false, message: ''})
 
     const sendVerificationCode = async () => {
-        const resp = await fetch('http://localhost:8000/api/user/email/', {
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_VOTE_API_BASE}/api/user/email/`, {
             method: 'POST',
             body: JSON.stringify({email: email}),
             headers: {
@@ -38,7 +38,7 @@ function EmailModal({email, setEmail, setShowEmailModal, setIsActive}) {
     }
 
     const verifyCode = async () => {
-        const resp = await fetch('http://localhost:8000/api/user/email/check/', {
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_VOTE_API_BASE}/api/user/email/check/`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
