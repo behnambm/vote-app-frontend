@@ -38,7 +38,7 @@ export default function Home() {
         return true
       }
       else {
-        showEmailModal(true)
+        setShowEmailModal(true)
         return false
       }
     })
