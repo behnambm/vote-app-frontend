@@ -12,6 +12,4 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
-
-CMD pm2-runtime start npm --name 'next-app' -- start 
+CMD npm run build && pm2-runtime start npm --name 'next-app' -- start 
